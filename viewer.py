@@ -20,7 +20,8 @@ RUNS = os.path.join(HERE, "arena_runs")
 
 
 def latest_run():
-    runs = sorted(d for d in glob.glob(os.path.join(RUNS, "*_*")) if os.path.isdir(d))
+    runs = sorted(d for d in glob.glob(os.path.join(RUNS, "*_*"))
+                  if os.path.isdir(d) and glob.glob(os.path.join(d, "match_*_h1.json")))
     if not runs:
         sys.exit("no runs found in arena_runs/ - play a match first")
     return runs[-1]
